@@ -295,7 +295,7 @@ public class AFKr extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        if (event.getTo().getBlock() == event.getFrom().getBlock()) {
+        if (event.getTo().getBlock().equals(event.getFrom().getBlock())) {
             return;
         }
 
