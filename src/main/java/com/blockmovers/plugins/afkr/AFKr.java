@@ -20,7 +20,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class AFKr extends JavaPlugin implements Listener {
 
     static final Logger log = Logger.getLogger("Minecraft"); //set up our logger
-    public static Chat chat = null;
     public Configuration config = new Configuration(this);
     private Scheduler sched = new Scheduler(this);
     public final List<String> afkPlayers = new ArrayList();
@@ -39,8 +38,6 @@ public class AFKr extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
 
         config.loadConfiguration();
-
-        setupChat();
 
         getServer().getScheduler().scheduleSyncRepeatingTask(this, this.sched, 600L, 600L);
 
@@ -92,18 +89,9 @@ public class AFKr extends JavaPlugin implements Listener {
         return false;
     }
 
-    private boolean setupChat() {
-        RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
-        if (chatProvider != null) {
-            chat = chatProvider.getProvider();
-        }
-
-        return (chat != null);
-    }
-
     private void setName(Player p, ChatColor color) {
         try {
-        p.setPlayerListName(color + this.removeColors(chat.getPlayerPrefix(p) + p.getDisplayName()));
+        p.setPlayerListName(color + this.removeColors(p.getDisplayName()));
         }
         catch(IllegalArgumentException e) {
             try {
