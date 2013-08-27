@@ -6,8 +6,7 @@ main: com.blockmovers.plugins.afkr.AFKr
 name: AFKr
 startup: postworld
 url: http://blockmovers.com/
-version: '0.1'
-depend: [Vault]
+version: '0.2'
 commands:
   afkr:
     usage: /<command> (player)

@@ -2,7 +2,6 @@ package com.blockmovers.plugins.afkr;
 
 import java.util.*;
 import java.util.logging.Logger;
-import net.milkbowl.vault.chat.Chat;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -14,7 +13,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AFKr extends JavaPlugin implements Listener {
@@ -164,7 +162,7 @@ public class AFKr extends JavaPlugin implements Listener {
     public boolean checkDistance(Player p) {
         Location last = this.playerLocation.get(p.getName());
         Location current = p.getLocation();
-        if (this.Distance3D(last.getX(), last.getY(), last.getZ(), current.getX(), current.getY(), current.getZ()) >= 2) {
+        if (this.Distance3D(last.getX(), last.getY(), last.getZ(), current.getX(), current.getY(), current.getZ()) >= config.AFKBlocksMoved) {
             return true;
         }
         return false;

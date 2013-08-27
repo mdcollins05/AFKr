@@ -17,6 +17,7 @@ public class Configuration {
     public String AFKEndMsg = null;
     public String AFKKickMsg = null;
     public String AFKKickBroadcast = null;
+    public Integer AFKBlocksMoved = null;
 
     public Configuration(AFKr plugin) {
         this.plugin = plugin;
@@ -29,6 +30,7 @@ public class Configuration {
         plugin.getConfig().addDefault("afkr.endmsg", "&f[&1AFKr&f]&7 You have returned.");
         plugin.getConfig().addDefault("afkr.kickmsg", "You were kicked for afking too long.");
         plugin.getConfig().addDefault("afkr.kickbroadcast", "&f[&1AFKr&f]&7 $p was kicked for afking too long.");
+        plugin.getConfig().addDefault("afkr.blocks.moved.to.be.unafk", 3);
         plugin.getConfig().options().copyDefaults(true);
         //Save the config whenever you manipulate it
         plugin.saveConfig();
@@ -43,5 +45,6 @@ public class Configuration {
         AFKEndMsg = plugin.getConfig().getString("afkr.endmsg");
         AFKKickMsg = plugin.getConfig().getString("afkr.kickmsg");
         AFKKickBroadcast = plugin.getConfig().getString("afkr.kickbroadcast");
+        AFKBlocksMoved = plugin.getConfig().getInt("afkr.blocks.moved.to.be.unafk");
     }
 }
