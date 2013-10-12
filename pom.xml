@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.blockmovers.plugins.afkr</groupId>
     <artifactId>AFKr</artifactId>
-    <version>0.1</version>
+    <version>1</version>
     <name>AFKr</name>
     <url>http://blockmovers.com/</url>
     <repositories>
@@ -23,7 +23,31 @@
                     <target>1.5</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>autoincrement-versions-maven-plugin</artifactId>
+                <version>2.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>update-pom-versions</id>
+                        <goals>
+                            <goal>increment</goal>
+                            <goal>commit</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <autoIncrementVersion>true</autoIncrementVersion>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
     <dependencies>
         <dependency>
@@ -34,4 +58,14 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>autoincrement-versions-maven-plugin</id>
+            <name>autoincrement-versions-maven-plugin</name>
+            <url>http://autoincrement-versions-maven-plugin.googlecode.com/svn/repo</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
