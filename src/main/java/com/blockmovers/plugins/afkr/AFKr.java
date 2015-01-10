@@ -39,8 +39,7 @@ public class AFKr extends JavaPlugin implements Listener {
 
         getServer().getScheduler().scheduleSyncRepeatingTask(this, this.sched, 600L, 600L);
 
-        Player[] onlinePlayers = getServer().getOnlinePlayers();
-        for (Player p : onlinePlayers) {
+        for (Player p : getServer().getOnlinePlayers()) {
             this.addPlayer(p);
             this.setName(p);
         }
