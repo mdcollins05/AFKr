@@ -161,7 +161,7 @@ public class AFKr extends JavaPlugin implements Listener {
     public boolean checkDistance(Player p) {
         Location last = this.playerLocation.get(p.getName());
         Location current = p.getLocation();
-        if (this.Distance3D(last.getX(), last.getY(), last.getZ(), current.getX(), current.getY(), current.getZ()) >= config.AFKBlocksMoved) {
+        if (this.Distance3D(last, current) >= config.AFKBlocksMoved) {
             return true;
         }
         return false;
@@ -173,19 +173,15 @@ public class AFKr extends JavaPlugin implements Listener {
         return string;
     }
 
-    private int Distance3D(double x1, double y1, double z1, double x2, double y2, double z2) {
-        //     __________________________________
-        //d = &#8730; (x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2
-        //
-
+    private int Distance3D(Location one, Location two) {
         //Our end result
         int result = 0;
         //Take x2-x1, then square it
-        double part1 = Math.pow((x2 - x1), 2);
+        double part1 = Math.pow((two.getX() - one.getX()), 2);
         //Take y2-y1, then sqaure it
-        double part2 = Math.pow((y2 - y1), 2);
+        double part2 = Math.pow((two.getY() - one.getY()), 2);
         //Take z2-z1, then square it
-        double part3 = Math.pow((z2 - z1), 2);
+        double part3 = Math.pow((two.getZ() - one.getZ()), 2);
         //Add both of the parts together
         double underRadical = part1 + part2 + part3;
         //Get the square root of the parts
